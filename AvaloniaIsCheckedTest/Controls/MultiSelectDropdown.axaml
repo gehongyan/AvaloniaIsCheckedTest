@@ -1,0 +1,43 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:sys="using:System"
+        xmlns:c="using:AvaloniaIsCheckedTest.Controls">
+  <Design.PreviewWith>
+    <c:MultiSelectDropdown />
+  </Design.PreviewWith>
+
+	<!--<Style Selector="CheckBox.NoContent /template/ ContentPresenter#ContentPresenter">
+		<Setter Property="IsVisible" Value="False"/>
+	</Style>-->
+
+	<Style Selector="c|MultiSelectDropdown">
+		<!-- Set Defaults -->
+		<Setter Property="Template">
+			<ControlTemplate TargetType="c:MultiSelectDropdown">
+				<StackPanel Name="RootPanel">
+					<TextBox Name="InternalButtonTextBox" Text="Testing"/>
+					<!-- <FlyoutBase.AttachedFlyout> -->
+					<!-- <Flyout Placement="BottomEdgeAlignedLeft"> -->
+					<Panel Name="FlyoutPanel">
+						<DataGrid Name="InternalDataGrid"
+								  IsReadOnly="False"
+								  Items="{Binding People}"
+								  AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridCheckBoxColumn Binding="{Binding IsSelected}">
+									<DataGridCheckBoxColumn.HeaderTemplate>
+										<DataTemplate>
+											<CheckBox IsThreeState="True" IsChecked="{CompiledBinding IsAllSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=c:MultiSelectDropdown}}" />
+										</DataTemplate>
+									</DataGridCheckBoxColumn.HeaderTemplate>
+								</DataGridCheckBoxColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Panel>
+					<!-- </Flyout> -->
+					<!-- </FlyoutBase.AttachedFlyout> -->
+				</StackPanel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>
